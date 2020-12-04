@@ -7,8 +7,8 @@
 /**
  * Restituisce un nuovo array contenente gli elementi compresi fra la posizione start (inclusa) e la posizione end (esclusa) dell'array sequence.
  * 
- * Il massimo valore possibile per end è la lunghezza dell'array sequence.
- * Se start ed end non sono posizioni valide per l'array sequence, o end non rispetta il vincolo precedente, allora la funzione restituisce null.
+ * Vincoli: Il massimo valore possibile per end è la lunghezza dell'array sequence. Inoltre start deve essere minore di end.
+ * Se start ed end non sono posizioni valide per l'array sequence, o start ed end non rispettano i vincoli precedenti, allora la funzione restituisce null.
  * 
  * @param {array} sequence Array dal quale prendere gli elementi.
  * @param {number} start Posizione iniziale (inclusa).
@@ -17,7 +17,7 @@
  */
 function sliceInterval(sequence, start, end){
     var newSequence = [];
-    if(start < 0 || end < 0 || start > sequence.length || end > sequence.length){
+    if(start < 0 || end < 0 || start > sequence.length || end > sequence.length || start >= end){
         return null;
     }
 
@@ -36,4 +36,8 @@ console.log(sottoSequenza);
 sottoSequenza = sliceInterval(sequenza, 1, 8);
 console.log(sottoSequenza); // null
 sottoSequenza = sliceInterval(sequenza, -1, 3);
+console.log(sottoSequenza); // null
+sottoSequenza = sliceInterval(sequenza, 3, 1);
+console.log(sottoSequenza); // null
+sottoSequenza = sliceInterval(sequenza, 3, 3);
 console.log(sottoSequenza); // null
